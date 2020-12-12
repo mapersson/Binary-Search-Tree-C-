@@ -15,45 +15,30 @@ namespace Trees
             this.root = root;
         }
 
-        public bool insertNode(Node newNode)
+        public void insertNode(int value)
         {
-            if (root == null)
+            root = insertNode(value, root);
+        }
+
+        private Node insertNode(int value, Node cNode)
+        {
+            if (cNode == null)
             {
-                root = newNode;
-                return true;
-            }
-            else
-            {
-                Node cnode = root;
-                while (cnode != null) //This is defensive. Code should never provde a null cnode at this point. 
+                cNode = new Node()
                 {
-                    if (newNode.data > cnode.data)
-                    {
-                        if (cnode.right != null)
-                        {
-                            cnode = cnode.right;
-                        }
-                        else
-                        {
-                            cnode.right = newNode;
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        if (cnode.left != null)
-                        {
-                            cnode = cnode.left;
-                        }
-                        else
-                        {
-                            cnode.left = newNode;
-                            return true;
-                        }
-                    }
-                }
-                return false; // If insert fails return false. 
+                    data = value
+                };
+                return cNode;
             }
+            if (value > cNode.data)
+            {
+                cNode.right = insertNode(value, cNode.right);
+            }
+            if (value < cNode.data)
+            {
+                cNode.left = insertNode(value, cNode.left);
+            }
+            return cNode;
         }
 
         public int search(int value)
