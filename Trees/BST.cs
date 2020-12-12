@@ -56,6 +56,44 @@ namespace Trees
             }
         }
 
+        public int search(int value)
+        {
+            Node foundNode = searchUtil(value, root);
+            if (foundNode != null)
+            {
+                return foundNode.data;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        protected Node searchUtil(int value, Node n)
+        {
+            // TODO: Clean up the null check in this method. 
+            if (n == null)
+            {
+                return null;
+            }
+            else if (value == n.data)
+            {
+                return n;
+            }
+            else if (value > n.data)
+            {
+                return searchUtil(value, n.right);
+            }
+            else if (value < n.data)
+            {
+                return searchUtil(value, n.left);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public void printTree()
         {
             if (root == null)
