@@ -5,9 +5,17 @@ namespace Trees.Tests
     [TestClass]
     public class AVLTests
     {
-        [TestMethod]
-        public void TestMethod1()
+
+        private AVL _avl;
+
+        public AVLTests()
         {
+            _avl = new AVL();
+        }
+        [TestMethod]
+        public void ClassCreationTest()
+        {
+            Assert.IsNotNull(_avl);
         }
     }
 }

@@ -5,9 +5,16 @@ namespace Trees.Tests
     [TestClass]
     public class BSTTests
     {
-        [TestMethod]
-        public void TestMethod1()
+        private BST _bst;
+
+        public BSTTests()
         {
+            _bst = new BST();
+        }
+        [TestMethod]
+        public void ClassCreationTest()
+        {
+            Assert.IsNotNull(_bst);
         }
     }
 }
