@@ -4,7 +4,7 @@ namespace Trees
 {
     public class BST
     {
-        Node root;
+        protected Node root;
 
         public BST()
         {
@@ -89,14 +89,33 @@ namespace Trees
             return;
         }
 
-        private int nodeHeight(Node n)
+        protected int nodeHeight(Node n)
         {
             if (n == null)
             {
-                return -1;
+                return -1; // Return -1 to account that the root node has a height of 0
             }
             n.height = 1 + Math.Max(nodeHeight(n.left), nodeHeight(n.right));
             return n.height;
+        }
+
+        public bool isBST()
+        {
+            return isBSTUtil(root, int.MinValue, int.MaxValue);
+        }
+
+        private bool isBSTUtil(Node n, int min, int max)
+        {
+            if (n == null)
+            {
+                return true;
+            }
+            if (n.data < min || n.data > max)
+            {
+                return false;
+            }
+
+            return isBSTUtil(n.left, min, n.data) && isBSTUtil(n.right, n.data, max);
         }
     }
 
