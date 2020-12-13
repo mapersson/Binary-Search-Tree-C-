@@ -20,7 +20,7 @@ namespace Trees
             root = insertNode(value, root);
         }
 
-        private Node insertNode(int value, Node cNode)
+        protected Node insertNode(int value, Node cNode)
         {
             if (cNode == null)
             {
@@ -116,7 +116,7 @@ namespace Trees
         {
             if (n == null)
             {
-                return -1; // Return -1 to account that the root node has a height of 0
+                return 0;
             }
             n.height = 1 + Math.Max(nodeHeight(n.left), nodeHeight(n.right));
             return n.height;

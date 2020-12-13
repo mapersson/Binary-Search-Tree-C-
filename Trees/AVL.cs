@@ -33,13 +33,14 @@ namespace Trees
                 Single Right Rotation
         */
 
-        public void insertNode(int value)
+        public new void insertNode(int value)
         {
             root = insertNode(value, root);
         }
 
-        private Node insertNode(int value, Node cNode)
+        private new Node insertNode(int value, Node cNode)
         {
+
             if (cNode == null)
             {
                 cNode = new Node()
@@ -56,6 +57,7 @@ namespace Trees
             {
                 cNode.left = insertNode(value, cNode.left);
             }
+
             Console.WriteLine("Value: {0}, Before Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
 
             var bf = balance(cNode.left, cNode.right);

@@ -11,13 +11,13 @@ namespace Trees
             Node myNode = new Node(11);
             BST myTree = new BST(myNode);
             Node secondNode = new Node(20);
-            myTree.insertNode(secondNode);
+            myTree.insertNode(20);
             Node thirdNode = new Node(29);
-            myTree.insertNode(thirdNode);
+            myTree.insertNode(29);
             Node fourthNode = new Node(32);
-            myTree.insertNode(fourthNode);
+            myTree.insertNode(32);
             Node fifthNode = new Node(41);
-            myTree.insertNode(fifthNode);
+            myTree.insertNode(41);
 
             Node sixthNode = new Node(65);
             Node seventhNode = new Node(50);
