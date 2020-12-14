@@ -41,6 +41,58 @@ namespace Trees
             return cNode;
         }
 
+        public void deleteValue(int value)
+        {
+            root = deleteNode(value, root);
+        }
+
+        protected Node deleteNode(int value, Node pNode)
+        {
+            if (pNode == null)
+            {
+                return pNode;
+            }
+            if (pNode.data < value)
+            {
+                pNode.right = deleteNode(value, pNode.right);
+            }
+            if (pNode.data > value)
+            {
+                pNode.left = deleteNode(value, pNode.left);
+            }
+            else
+            {
+                if (pNode.left != null && pNode.right != null)
+                {
+                    pNode.data = minNodeValue(pNode.right);
+                    pNode.right = deleteNode(pNode.data, pNode.right);
+                    return pNode;
+                }
+                else if (pNode.left != null)
+                {
+                    return pNode.left;
+
+                }
+                else if (pNode.right != null)
+                {
+                    return pNode.right;
+                }
+                return null;
+            }
+            return pNode;
+        }
+
+        protected int minNodeValue(Node cNode)
+        {
+            int min = cNode.data;
+            while (cNode.left != null)
+            {
+                min = cNode.left.data;
+                cNode = cNode.left;
+            }
+            return min;
+        }
+
         public int search(int value)
         {
             Node foundNode = searchUtil(value, root);
@@ -53,6 +105,9 @@ namespace Trees
                 return -1;
             }
         }
+        // TODO: Delete method
+
+
 
         protected Node searchUtil(int value, Node n)
         {

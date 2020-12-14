@@ -90,6 +90,73 @@ namespace Trees
             return cNode;
         }
 
+        public new void deleteValue(int value)
+        {
+            root = deleteNode(value, root);
+        }
+
+        protected new Node deleteNode(int value, Node pNode)
+        {
+            if (pNode == null)
+            {
+                return pNode;
+            }
+            if (pNode.data < value)
+            {
+                pNode.right = deleteNode(value, pNode.right);
+            }
+            if (pNode.data > value)
+            {
+                pNode.left = deleteNode(value, pNode.left);
+            }
+            else
+            {
+                if (pNode.left != null && pNode.right != null)
+                {
+                    pNode.data = minNodeValue(pNode.right);
+                    pNode.right = deleteNode(pNode.data, pNode.right);
+                    return pNode;
+                }
+                else if (pNode.left != null)
+                {
+                    return pNode.left;
+
+                }
+                else if (pNode.right != null)
+                {
+                    return pNode.right;
+                }
+                return null;
+            }
+            var bf = balance(pNode.left, pNode.right);
+
+            if (bf > 1)
+            {
+                if (balance(pNode.left.left, pNode.left.right) == 1)
+                {
+                    pNode = rightRotation(pNode);
+                }
+                else
+                {
+                    pNode.left = leftRotation(pNode.left);
+                    pNode = rightRotation(pNode);
+                }
+            }
+            else if (bf < -1)
+            {
+                if (balance(pNode.right.left, pNode.right.right) == -1)
+                {
+                    pNode = leftRotation(pNode);
+                }
+                else
+                {
+                    pNode.right = rightRotation(pNode.right);
+                    pNode = leftRotation(pNode);
+                }
+            }
+            Console.WriteLine("Value: {0}, After Bal: {1}", pNode.data, balance(pNode.left, pNode.right));
+            return pNode;
+        }
         public bool isAVL()
         {
             if (this.isBST() && this.isAVLUtil(root))
