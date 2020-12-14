@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Trees
 {
@@ -6,60 +8,45 @@ namespace Trees
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
 
-            Node myNode = new Node(11);
-            BST myTree = new BST(myNode);
-            Node secondNode = new Node(20);
-            myTree.insertNode(20);
-            Node thirdNode = new Node(29);
-            myTree.insertNode(29);
-            Node fourthNode = new Node(32);
-            myTree.insertNode(32);
-            Node fifthNode = new Node(41);
-            myTree.insertNode(41);
+            BST myTree = new BST();
 
-            Node sixthNode = new Node(65);
-            Node seventhNode = new Node(50);
-            Node eightNode = new Node(91);
-            Node ninthNode = new Node(72);
-            Node tenthNode = new Node(99);
+            var random = new Random();
+            var numSet = new HashSet<int>();
+            for (int i = 0; i < int.MaxValue / 100000; i++)
+            {
+                numSet.Add(random.Next(10, int.MaxValue));
+            }
+
+            foreach (int item in numSet)
+            {
+                myTree.insertNode(item);
+            }
+
+            myTree.insertNode(5);
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            var findValue = myTree.search(5);
+            watch.Stop();
+            Console.WriteLine("Set Size {0}", numSet.Count);
+            Console.WriteLine("Found Value: {0}", findValue);
+            Console.WriteLine("BST Elapsed Ticks: {0}", watch.ElapsedTicks);
 
             AVL myAVLTree = new AVL();
-            myAVLTree.insertNode(11);
-            myAVLTree.insertNode(20);
-            myAVLTree.insertNode(29);
-            myAVLTree.insertNode(32);
-            myAVLTree.insertNode(41);
-            myAVLTree.insertNode(65);
-            myAVLTree.insertNode(50);
-            myAVLTree.insertNode(91);
-            myAVLTree.insertNode(72);
-            myAVLTree.insertNode(99);
 
-            // var rand = new Random();
+            foreach (int item in numSet)
+            {
+                myAVLTree.insertNode(item);
+            }
 
-            // for (int i = 0; i < 5; i++)
-            // {
-            //     Node newNode = new Node(rand.Next(0, 100));
-            //     myTree.insertNode(newNode);
-            //     myAVLTree.insertNode(newNode);
-            // }
-
-            // Console.Write("{0}", myTree.height());
-            // Console.WriteLine();
-            // myTree.printTree();
-
-            Console.WriteLine();
-            Console.Write("{0}", myAVLTree.height());
-            Console.WriteLine();
-            myAVLTree.printTree();
-
-            Console.WriteLine("Is BST: {0}", myAVLTree.isBST());
-
-            Console.WriteLine("Is AVL: {0}", myAVLTree.isAVL());
-
-
+            myAVLTree.insertNode(5);
+            watch.Reset();
+            watch.Start();
+            var findAVLValue = myTree.search(5);
+            watch.Stop();
+            Console.WriteLine("Set Size {0}", numSet.Count);
+            Console.WriteLine("AVL Found Value: {0}", findAVLValue);
+            Console.WriteLine("AVL Elapsed Ticks: {0}", watch.ElapsedTicks);
 
 
         }

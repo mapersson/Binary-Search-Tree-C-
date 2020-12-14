@@ -58,7 +58,7 @@ namespace Trees
                 cNode.left = insertNode(value, cNode.left);
             }
 
-            Console.WriteLine("Value: {0}, Before Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
+            // Console.WriteLine("Value: {0}, Before Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
 
             var bf = balance(cNode.left, cNode.right);
 
@@ -86,7 +86,7 @@ namespace Trees
                     cNode = leftRotation(cNode);
                 }
             }
-            Console.WriteLine("Value: {0}, After Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
+            // Console.WriteLine("Value: {0}, After Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
             return cNode;
         }
 
@@ -154,7 +154,7 @@ namespace Trees
                     pNode = leftRotation(pNode);
                 }
             }
-            Console.WriteLine("Value: {0}, After Bal: {1}", pNode.data, balance(pNode.left, pNode.right));
+            // Console.WriteLine("Value: {0}, After Bal: {1}", pNode.data, balance(pNode.left, pNode.right));
             return pNode;
         }
         public bool isAVL()
