@@ -7,6 +7,11 @@ namespace Trees
         public int height { get; set; }
         private Node _left;
         private Node _right;
+        /// <summary>
+        /// Property accessor for left child node
+        /// When child node is set, the height of the node is updated.
+        /// </summary>
+        /// <value>Node</value>
         public Node Left
         {
             get { return _left; }
@@ -16,6 +21,12 @@ namespace Trees
                 this.updateHeight();
             }
         }
+        /// <summary>
+        /// Property accessor for right child node
+        /// When child node is set, the height of the node is updated.
+        /// </summary>
+        /// <value>Node</value>
+
         public Node Right
         {
             get { return _right; }
@@ -30,6 +41,11 @@ namespace Trees
         {
 
         }
+        /// <summary>
+        /// Create a node with a given integer value.
+        /// A node always starts with a height of "1"
+        /// </summary>
+        /// <param name="data">An integer representing the value of the node</param>
         public Node(int data)
         {
             this.data = data;
@@ -38,11 +54,18 @@ namespace Trees
             this._right = null;
         }
 
+        /// <summary>
+        /// Updates the hieght of the node
+        /// </summary>
         public void updateHeight()
         {
             this.height = nodeHeight(this);
         }
 
+        /// <summary>
+        /// Calculates the balance of the node.
+        /// </summary>
+        /// <returns>An integer representing the current balance of the node</returns>
         public int balance()
         {
             if (_left == null && _right == null)
