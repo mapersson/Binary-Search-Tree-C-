@@ -27,11 +27,11 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             // Action
-            newTree.insertNode(15);
+            newTree.insertValue(15);
 
             // Assert
             var height = newTree.height();
@@ -49,11 +49,11 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             // Action
-            newTree.insertNode(15);
+            newTree.insertValue(15);
 
             // Assert
             var height = newTree.height();
@@ -75,7 +75,7 @@ namespace Trees.Tests
             AVL myTree = new AVL(root);
 
             //Action
-            myTree.insertNode(15);
+            myTree.insertValue(15);
 
             // Assert
             var height = myTree.height();
@@ -97,7 +97,7 @@ namespace Trees.Tests
             AVL myTree = new AVL(root);
 
             //Action
-            myTree.insertNode(8);
+            myTree.insertValue(8);
 
             // Assert
             var height = myTree.height();
@@ -123,7 +123,7 @@ namespace Trees.Tests
             AVL myTree = new AVL(root);
 
             // Action
-            myTree.insertNode(15);
+            myTree.insertValue(15);
 
             // Assert
             var height = myTree.height();
@@ -148,7 +148,7 @@ namespace Trees.Tests
             AVL myTree = new AVL(root);
 
             // Action
-            myTree.insertNode(8);
+            myTree.insertValue(8);
 
             // Assert
             var height = myTree.height();

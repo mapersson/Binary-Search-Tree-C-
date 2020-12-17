@@ -27,7 +27,7 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             // Action
@@ -46,7 +46,7 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             // Action
@@ -63,7 +63,7 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             var height = newTree.height();
@@ -79,7 +79,7 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             var height = newTree.height();
@@ -94,7 +94,7 @@ namespace Trees.Tests
 
             foreach (int i in testData)
             {
-                newTree.insertNode(i);
+                newTree.insertValue(i);
             }
 
             var height = newTree.height();

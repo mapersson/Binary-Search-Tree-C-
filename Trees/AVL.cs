@@ -33,7 +33,7 @@ namespace Trees
                 Single Right Rotation
         */
 
-        public new void insertNode(int value)
+        public new void insertValue(int value)
         {
             root = insertNode(value, root);
         }
