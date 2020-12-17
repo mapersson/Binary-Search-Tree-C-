@@ -26,7 +26,6 @@ namespace Trees
         /// When child node is set, the height of the node is updated.
         /// </summary>
         /// <value>Node</value>
-
         public Node Right
         {
             get { return _right; }
