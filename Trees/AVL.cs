@@ -17,12 +17,12 @@ namespace Trees
         /// <summary>
         /// Calculates the balance of the current node
         /// </summary>
-        /// <param name="ln">The left hand child node</param>
-        /// <param name="rn">The right hand child node</param>
+        /// <param name="ln">The Left hand child node</param>
+        /// <param name="rn">The Right hand child node</param>
         /// <returns>The balance of the current node</returns>
         private int balance(Node ln, Node rn)
         {
-            return nodeHeight(ln) - nodeHeight(rn);
+            return ln.height - rn.height;
         }
 
         /// <summary>
@@ -51,41 +51,46 @@ namespace Trees
                 {
                     data = value
                 };
+                cNode.updateHeight();
                 return cNode;
             }
             else if (value > cNode.data)
             {
-                cNode.right = insertNode(value, cNode.right);
+                cNode.Right = insertNode(value, cNode.Right);
             }
             else if (value < cNode.data)
             {
-                cNode.left = insertNode(value, cNode.left);
+                cNode.Left = insertNode(value, cNode.Left);
             }
 
-            var bf = balance(cNode.left, cNode.right);
+            var bf = cNode.balance();
 
             if (bf > 1)
             {
-                if (balance(cNode.left.left, cNode.left.right) == 1)
+                if (cNode.Left.balance() == 1)
                 {
-                    cNode = rightRotation(cNode);
+                    cNode = RightRotation(cNode);
+                    cNode.updateHeight();
                 }
                 else
                 {
-                    cNode.left = leftRotation(cNode.left);
-                    cNode = rightRotation(cNode);
+                    cNode.Left = LeftRotation(cNode.Left);
+                    cNode = RightRotation(cNode);
+                    cNode.updateHeight();
                 }
             }
             else if (bf < -1)
             {
-                if (balance(cNode.right.left, cNode.right.right) == -1)
+                if (cNode.Right.balance() == -1)
                 {
-                    cNode = leftRotation(cNode);
+                    cNode = LeftRotation(cNode);
+                    cNode.updateHeight();
                 }
                 else
                 {
-                    cNode.right = rightRotation(cNode.right);
-                    cNode = leftRotation(cNode);
+                    cNode.Right = RightRotation(cNode.Right);
+                    cNode = LeftRotation(cNode);
+                    cNode.updateHeight();
                 }
             }
             return cNode;
@@ -108,67 +113,66 @@ namespace Trees
         /// <param name="value">The value to be deleted</param>
         /// <param name="cNode">The current root node in the subtree.</param>
         /// <returns>The root node of the subtree.</returns>
-        protected new Node deleteNode(int value, Node pNode)
+        protected new Node deleteNode(int value, Node cNode)
         {
-            if (pNode == null)
+            if (cNode == null)
             {
-                return pNode;
+                return cNode;
             }
-            else if (pNode.data < value)
+            else if (cNode.data < value)
             {
-                pNode.right = deleteNode(value, pNode.right);
+                cNode.Right = deleteNode(value, cNode.Right);
             }
-            else if (pNode.data > value)
+            else if (cNode.data > value)
             {
-                pNode.left = deleteNode(value, pNode.left);
+                cNode.Left = deleteNode(value, cNode.Left);
             }
             else
             {
-                if (pNode.left != null && pNode.right != null)
+                if (cNode.Left != null && cNode.Right != null)
                 {
-                    pNode.data = minNodeValue(pNode.right);
-                    pNode.right = deleteNode(pNode.data, pNode.right);
-                    return pNode;
+                    cNode.data = minNodeValue(cNode.Right);
+                    cNode.Right = deleteNode(cNode.data, cNode.Right);
+                    return cNode;
                 }
-                else if (pNode.left != null)
+                else if (cNode.Left != null)
                 {
-                    return pNode.left;
+                    return cNode.Left;
 
                 }
-                else if (pNode.right != null)
+                else if (cNode.Right != null)
                 {
-                    return pNode.right;
+                    return cNode.Right;
                 }
                 return null;
             }
-            var bf = balance(pNode.left, pNode.right);
+            var bf = cNode.balance();
 
             if (bf > 1)
             {
-                if (balance(pNode.left.left, pNode.left.right) == 1)
+                if (cNode.Left.balance() == 1)
                 {
-                    pNode = rightRotation(pNode);
+                    cNode = RightRotation(cNode);
                 }
                 else
                 {
-                    pNode.left = leftRotation(pNode.left);
-                    pNode = rightRotation(pNode);
+                    cNode.Left = LeftRotation(cNode.Left);
+                    cNode = RightRotation(cNode);
                 }
             }
             else if (bf < -1)
             {
-                if (balance(pNode.right.left, pNode.right.right) == -1)
+                if (cNode.Right.balance() == -1)
                 {
-                    pNode = leftRotation(pNode);
+                    cNode = LeftRotation(cNode);
                 }
                 else
                 {
-                    pNode.right = rightRotation(pNode.right);
-                    pNode = leftRotation(pNode);
+                    cNode.Right = RightRotation(cNode.Right);
+                    cNode = LeftRotation(cNode);
                 }
             }
-            // Console.WriteLine("Value: {0}, After Bal: {1}", pNode.data, balance(pNode.left, pNode.right));
-            return pNode;
+            return cNode;
         }
 
         /// <summary>
@@ -200,26 +204,26 @@ namespace Trees
             {
                 return true;
             }
-            if (this.balance(n.left, n.right) > 1 || this.balance(n.left, n.right) < -1)
+            if (n.balance() > 1 || n.balance() < -1)
             {
                 return false;
             }
-            return isAVLUtil(n.left) && isAVLUtil(n.right);
+            return isAVLUtil(n.Left) && isAVLUtil(n.Right);
         }
 
-        protected Node leftRotation(Node n)
+        protected Node LeftRotation(Node n)
         {
-            Node b = n.right;
-            n.right = b.left;
-            b.left = n;
+            Node b = n.Right;
+            n.Right = b.Left;
+            b.Left = n;
             return b;
         }
 
-        protected Node rightRotation(Node n)
+        protected Node RightRotation(Node n)
         {
-            Node b = n.left;
-            n.left = b.right;
-            b.right = n;
+            Node b = n.Left;
+            n.Left = b.Right;
+            b.Right = n;
             return b;
         }
     }

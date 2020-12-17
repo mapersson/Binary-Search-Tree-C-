@@ -53,7 +53,7 @@ namespace Trees.Tests
             }
 
             // Action
-            newTree.insertValue(15);
+            newTree.insertValue(8);
 
             // Assert
             var height = newTree.height();
@@ -67,10 +67,10 @@ namespace Trees.Tests
 
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.right = new Node(9);
-            root.right = new Node(26);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Right = new Node(9);
+            root.Right = new Node(26);
 
             AVL myTree = new AVL(root);
 
@@ -89,10 +89,10 @@ namespace Trees.Tests
 
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.right = new Node(9);
-            root.right = new Node(26);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Right = new Node(9);
+            root.Right = new Node(26);
 
             AVL myTree = new AVL(root);
 
@@ -110,15 +110,15 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.left.left = new Node(2);
-            root.left.right = new Node(9);
-            root.left.right.left = new Node(7);
-            root.left.right.right = new Node(11);
-            root.right = new Node(26);
-            root.right.left = new Node(21);
-            root.right.right = new Node(30);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Left.Left = new Node(2);
+            root.Left.Right = new Node(9);
+            root.Left.Right.Left = new Node(7);
+            root.Left.Right.Right = new Node(11);
+            root.Right = new Node(26);
+            root.Right.Left = new Node(21);
+            root.Right.Right = new Node(30);
 
             AVL myTree = new AVL(root);
 
@@ -135,15 +135,15 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.left.left = new Node(2);
-            root.left.right = new Node(9);
-            root.left.right.left = new Node(7);
-            root.left.right.right = new Node(11);
-            root.right = new Node(26);
-            root.right.left = new Node(21);
-            root.right.right = new Node(30);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Left.Left = new Node(2);
+            root.Left.Right = new Node(9);
+            root.Left.Right.Left = new Node(7);
+            root.Left.Right.Right = new Node(11);
+            root.Right = new Node(26);
+            root.Right.Left = new Node(21);
+            root.Right.Right = new Node(30);
 
             AVL myTree = new AVL(root);
 
@@ -161,10 +161,10 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(2);
-            root.left = new Node(1);
-            root.right = new Node(4);
-            root.right.left = new Node(3);
-            root.right.right = new Node(5);
+            root.Left = new Node(1);
+            root.Right = new Node(4);
+            root.Right.Left = new Node(3);
+            root.Right.Right = new Node(5);
 
             AVL myTree = new AVL(root);
 
@@ -181,19 +181,19 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(6);
-            root.left = new Node(2);
-            root.left.left = new Node(1);
-            root.left.right = new Node(4);
-            root.left.right.left = new Node(3);
-            root.left.right.right = new Node(5);
+            root.Left = new Node(2);
+            root.Left.Left = new Node(1);
+            root.Left.Right = new Node(4);
+            root.Left.Right.Left = new Node(3);
+            root.Left.Right.Right = new Node(5);
 
-            root.right = new Node(9);
-            root.right.left = new Node(8);
-            root.right.left.left = new Node(7);
-            root.right.right = new Node(15);
-            root.right.right.left = new Node(14);
-            root.right.right.right = new Node(16);
-            root.right.right.right.right = new Node(17);
+            root.Right = new Node(9);
+            root.Right.Left = new Node(8);
+            root.Right.Left.Left = new Node(7);
+            root.Right.Right = new Node(15);
+            root.Right.Right.Left = new Node(14);
+            root.Right.Right.Right = new Node(16);
+            root.Right.Right.Right.Right = new Node(17);
 
             AVL myTree = new AVL(root);
 
@@ -210,18 +210,18 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(5);
-            root.left = new Node(2);
-            root.left.left = new Node(1);
-            root.left.right = new Node(3);
-            root.left.right.right = new Node(4);
+            root.Left = new Node(2);
+            root.Left.Left = new Node(1);
+            root.Left.Right = new Node(3);
+            root.Left.Right.Right = new Node(4);
 
-            root.right = new Node(8);
-            root.right.left = new Node(7);
-            root.right.left.left = new Node(6);
-            root.right.right = new Node(10);
-            root.right.right.left = new Node(9);
-            root.right.right.right = new Node(12);
-            root.right.right.right.right = new Node(17);
+            root.Right = new Node(8);
+            root.Right.Left = new Node(7);
+            root.Right.Left.Left = new Node(6);
+            root.Right.Right = new Node(10);
+            root.Right.Right.Left = new Node(9);
+            root.Right.Right.Right = new Node(12);
+            root.Right.Right.Right.Right = new Node(17);
 
             AVL myTree = new AVL(root);
             Assert.IsTrue(myTree.isAVL());

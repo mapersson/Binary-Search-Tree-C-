@@ -107,15 +107,15 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.left.left = new Node(2);
-            root.left.right = new Node(9);
-            root.left.right.left = new Node(7);
-            root.left.right.right = new Node(11);
-            root.right = new Node(26);
-            root.right.left = new Node(21);
-            root.right.right = new Node(30);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Left.Left = new Node(2);
+            root.Left.Right = new Node(9);
+            root.Left.Right.Left = new Node(7);
+            root.Left.Right.Right = new Node(11);
+            root.Right = new Node(26);
+            root.Right.Left = new Node(21);
+            root.Right.Right = new Node(30);
 
             BST myTree = new BST(root);
 
@@ -130,15 +130,15 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.left.left = new Node(2);
-            root.left.right = new Node(9);
-            root.left.right.left = new Node(7);
-            root.left.right.right = new Node(11);
-            root.right = new Node(26);
-            root.right.left = new Node(21);
-            root.right.right = new Node(30);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Left.Left = new Node(2);
+            root.Left.Right = new Node(9);
+            root.Left.Right.Left = new Node(7);
+            root.Left.Right.Right = new Node(11);
+            root.Right = new Node(26);
+            root.Right.Left = new Node(21);
+            root.Right.Right = new Node(30);
 
             BST myTree = new BST(root);
 
@@ -152,14 +152,14 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.left.left = new Node(2);
-            root.left.right = new Node(9);
-            root.left.right.right = new Node(11);
-            root.right = new Node(26);
-            root.right.left = new Node(21);
-            root.right.right = new Node(30);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Left.Left = new Node(2);
+            root.Left.Right = new Node(9);
+            root.Left.Right.Right = new Node(11);
+            root.Right = new Node(26);
+            root.Right.Left = new Node(21);
+            root.Right.Right = new Node(30);
 
             BST myTree = new BST(root);
 
@@ -173,15 +173,15 @@ namespace Trees.Tests
         {
             // Arrange
             Node root = new Node(20);
-            root.left = new Node(4);
-            root.left.left = new Node(3);
-            root.left.left.left = new Node(2);
-            root.left.right = new Node(9);
-            root.left.right.left = new Node(7);
-            root.left.right.right = new Node(11);
-            root.right = new Node(26);
-            root.right.left = new Node(21);
-            root.right.right = new Node(30);
+            root.Left = new Node(4);
+            root.Left.Left = new Node(3);
+            root.Left.Left.Left = new Node(2);
+            root.Left.Right = new Node(9);
+            root.Left.Right.Left = new Node(7);
+            root.Left.Right.Right = new Node(11);
+            root.Right = new Node(26);
+            root.Right.Left = new Node(21);
+            root.Right.Right = new Node(30);
 
             BST myTree = new BST(root);
 

@@ -39,15 +39,16 @@ namespace Trees
                 {
                     data = value
                 };
+                cNode.updateHeight();
                 return cNode;
             }
             else if (value > cNode.data)
             {
-                cNode.right = insertNode(value, cNode.right);
+                cNode.Right = insertNode(value, cNode.Right);
             }
             else if (value < cNode.data)
             {
-                cNode.left = insertNode(value, cNode.left);
+                cNode.Left = insertNode(value, cNode.Left);
             }
             return cNode;
         }
@@ -75,28 +76,28 @@ namespace Trees
             }
             else if (cNode.data < value)
             {
-                cNode.right = deleteNode(value, cNode.right);
+                cNode.Right = deleteNode(value, cNode.Right);
             }
             else if (cNode.data > value)
             {
-                cNode.left = deleteNode(value, cNode.left);
+                cNode.Left = deleteNode(value, cNode.Left);
             }
             else
             {
-                if (cNode.left != null && cNode.right != null)
+                if (cNode.Left != null && cNode.Right != null)
                 {
-                    cNode.data = minNodeValue(cNode.right);
-                    cNode.right = deleteNode(cNode.data, cNode.right);
+                    cNode.data = minNodeValue(cNode.Right);
+                    cNode.Right = deleteNode(cNode.data, cNode.Right);
                     return cNode;
                 }
-                else if (cNode.left != null)
+                else if (cNode.Left != null)
                 {
-                    return cNode.left;
+                    return cNode.Left;
 
                 }
-                else if (cNode.right != null)
+                else if (cNode.Right != null)
                 {
-                    return cNode.right;
+                    return cNode.Right;
                 }
                 else
                 {
@@ -113,10 +114,10 @@ namespace Trees
         protected int minNodeValue(Node cNode)
         {
             int min = cNode.data;
-            while (cNode.left != null)
+            while (cNode.Left != null)
             {
-                min = cNode.left.data;
-                cNode = cNode.left;
+                min = cNode.Left.data;
+                cNode = cNode.Left;
             }
             return min;
         }
@@ -153,11 +154,11 @@ namespace Trees
             }
             else if (value > n.data)
             {
-                return searchUtil(value, n.right);
+                return searchUtil(value, n.Right);
             }
             else
             {
-                return searchUtil(value, n.left);
+                return searchUtil(value, n.Left);
             }
         }
 
@@ -184,7 +185,8 @@ namespace Trees
         /// <returns>An integer value representing the heigh of the tree.</returns>
         public int height()
         {
-            return nodeHeight(root);
+            root.updateHeight();
+            return root.height;
         }
         /// <summary>
         /// Prints the value of the nodes in the tree in preoder transersal order.
@@ -194,32 +196,18 @@ namespace Trees
         {
             // TODO: Refactor to a single null check. 
             Console.Write(" Value:{0}", n.data);
-            if (n.left != null)
+            if (n.Left != null)
             {
-                print(n.left);
+                print(n.Left);
             }
-            if (n.right != null)
+            if (n.Right != null)
             {
-                print(n.right);
+                print(n.Right);
             }
             return;
         }
 
-        /// <summary>
-        /// Calculates the height of the provided node. The bottom node has a height of 1, not 0.
-        /// </summary>
-        /// <param name="n">The node who's height is of interest</param>
-        /// <returns>An integer value representing the height of the node</returns>
-        protected int nodeHeight(Node n)
-        {
-            if (n == null)
-            {
-                return 0;
-            }
-            //TODO: Move this out of the function, and to the calling function.
-            n.height = 1 + Math.Max(nodeHeight(n.left), nodeHeight(n.right));
-            return n.height;
-        }
+
 
         /// <summary>
         /// A test to confirm the tree is infact a Binary Search Tree.
@@ -248,7 +236,7 @@ namespace Trees
                 return false;
             }
 
-            return isBSTUtil(n.left, min, n.data) && isBSTUtil(n.right, n.data, max);
+            return isBSTUtil(n.Left, min, n.data) && isBSTUtil(n.Right, n.data, max);
         }
     }
 
