@@ -47,10 +47,7 @@ namespace Trees
 
             if (cNode == null)
             {
-                cNode = new Node()
-                {
-                    data = value
-                };
+                cNode = new Node(value);
                 return cNode;
             }
             else if (value > cNode.data)
