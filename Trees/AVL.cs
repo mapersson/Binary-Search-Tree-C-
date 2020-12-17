@@ -51,7 +51,6 @@ namespace Trees
                 {
                     data = value
                 };
-                cNode.updateHeight();
                 return cNode;
             }
             else if (value > cNode.data)
@@ -63,37 +62,7 @@ namespace Trees
                 cNode.Left = insertNode(value, cNode.Left);
             }
 
-            var bf = cNode.balance();
-
-            if (bf > 1)
-            {
-                if (cNode.Left.balance() == 1)
-                {
-                    cNode = RightRotation(cNode);
-                    cNode.updateHeight();
-                }
-                else
-                {
-                    cNode.Left = LeftRotation(cNode.Left);
-                    cNode = RightRotation(cNode);
-                    cNode.updateHeight();
-                }
-            }
-            else if (bf < -1)
-            {
-                if (cNode.Right.balance() == -1)
-                {
-                    cNode = LeftRotation(cNode);
-                    cNode.updateHeight();
-                }
-                else
-                {
-                    cNode.Right = RightRotation(cNode.Right);
-                    cNode = LeftRotation(cNode);
-                    cNode.updateHeight();
-                }
-            }
-            return cNode;
+            return rebalance(cNode);
         }
 
         /// <summary>
@@ -146,33 +115,8 @@ namespace Trees
                 }
                 return null;
             }
-            var bf = cNode.balance();
 
-            if (bf > 1)
-            {
-                if (cNode.Left.balance() == 1)
-                {
-                    cNode = RightRotation(cNode);
-                }
-                else
-                {
-                    cNode.Left = LeftRotation(cNode.Left);
-                    cNode = RightRotation(cNode);
-                }
-            }
-            else if (bf < -1)
-            {
-                if (cNode.Right.balance() == -1)
-                {
-                    cNode = LeftRotation(cNode);
-                }
-                else
-                {
-                    cNode.Right = RightRotation(cNode.Right);
-                    cNode = LeftRotation(cNode);
-                }
-            }
-            return cNode;
+            return rebalance(cNode);
         }
 
         /// <summary>
@@ -210,7 +154,46 @@ namespace Trees
             }
             return isAVLUtil(n.Left) && isAVLUtil(n.Right);
         }
+        /// <summary>
+        /// Rebalances the substrees of the provded node.
+        /// </summary>
+        /// <param name="cNode">The root node to be rebalanced</param>
+        /// <returns>The root node afert the rebalance has taken place</returns>
+        protected Node rebalance(Node cNode)
+        {
+            var bf = cNode.balance();
 
+            if (bf > 1)
+            {
+                if (cNode.Left.balance() == 1)
+                {
+                    cNode = RightRotation(cNode);
+                }
+                else
+                {
+                    cNode.Left = LeftRotation(cNode.Left);
+                    cNode = RightRotation(cNode);
+                }
+            }
+            else if (bf < -1)
+            {
+                if (cNode.Right.balance() == -1)
+                {
+                    cNode = LeftRotation(cNode);
+                }
+                else
+                {
+                    cNode.Right = RightRotation(cNode.Right);
+                    cNode = LeftRotation(cNode);
+                }
+            }
+            return cNode;
+        }
+        /// <summary>
+        /// Applies a left rotation to the provided node 
+        /// </summary>
+        /// <param name="n">The node to be rotated about</param>
+        /// <returns>A node after the left rotation has been completed.</returns>
         protected Node LeftRotation(Node n)
         {
             Node b = n.Right;
@@ -218,7 +201,11 @@ namespace Trees
             b.Left = n;
             return b;
         }
-
+        /// <summary>
+        /// Applies a right rotation to the provided node 
+        /// </summary>
+        /// <param name="n">The node to be rotated about</param>
+        /// <returns>A node after the right rotation has been completed.</returns>
         protected Node RightRotation(Node n)
         {
             Node b = n.Left;
