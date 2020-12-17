@@ -11,41 +11,28 @@ namespace Trees
 
             BST myTree = new BST();
 
-            var random = new Random();
-            var numSet = new HashSet<int>();
-            for (int i = 0; i < 1000000; i++)
-            {
-                numSet.Add(random.Next(10, int.MaxValue));
-            }
-
-            foreach (int item in numSet)
-            {
-                myTree.insertValue(item);
-            }
-
+            myTree.insertValue(12);
+            myTree.insertValue(8);
+            myTree.insertValue(11);
             myTree.insertValue(5);
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            var findValue = myTree.search(5);
-            watch.Stop();
-            Console.WriteLine("Set Size {0}", numSet.Count);
-            Console.WriteLine("Found Value: {0}", findValue);
-            Console.WriteLine("BST Elapsed Ticks: {0}", watch.ElapsedTicks);
+            myTree.insertValue(4);
+            myTree.insertValue(18);
+            myTree.insertValue(17);
+
+            Console.WriteLine(myTree.printTree());
             AVL myAVLTree = new AVL();
 
-            foreach (int item in numSet)
-            {
-                myAVLTree.insertValue(item);
-            }
-
+            myAVLTree.insertValue(12);
+            myAVLTree.insertValue(8);
+            myAVLTree.insertValue(11);
             myAVLTree.insertValue(5);
-            watch.Reset();
-            watch.Start();
-            var findAVLValue = myTree.search(5);
-            watch.Stop();
-            Console.WriteLine("Set Size {0}", numSet.Count);
-            Console.WriteLine("AVL Found Value: {0}", findAVLValue);
-            Console.WriteLine("AVL Elapsed Ticks: {0}", watch.ElapsedTicks);
+            myAVLTree.insertValue(4);
+            myAVLTree.insertValue(18);
+            myAVLTree.insertValue(17);
+
+            Console.WriteLine(myAVLTree.printTree());
+
+
         }
 
     }
