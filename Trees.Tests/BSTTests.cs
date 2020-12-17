@@ -191,20 +191,41 @@ namespace Trees.Tests
             Assert.AreEqual(-1, myTree.search(4));
         }
 
-        [Ignore]
-        public void Print_ReturnsString()
+        [TestMethod]
+        public void Print_PopulatedTree_ReturnsString()
         {
             // Arrange
-            BST tree = new BST(new Node(1));
-            tree.insertValue(2);
-            tree.insertValue(3);
-            tree.insertValue(4);
+            BST tree = new BST();
+            tree.insertValue(46);
+            tree.insertValue(25);
+            tree.insertValue(19);
+            tree.insertValue(49);
+            tree.insertValue(27);
+            tree.insertValue(37);
             tree.insertValue(5);
 
             // Action
 
+            var preOrderString = tree.printTree();
 
             // Assert
+            Assert.AreEqual(" 46 25 19 5 27 37 49", preOrderString);
+
+        }
+
+        [TestMethod]
+        public void Print_EmptyTree_ReturnsString()
+        {
+            // Arrange
+            BST tree = new BST();
+
+            // Action
+
+            var preOrderString = tree.printTree();
+
+            // Assert
+            Assert.AreEqual("Empty Tree", preOrderString);
+
         }
     }
 }
