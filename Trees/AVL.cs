@@ -14,30 +14,34 @@ namespace Trees
         {
             this.root = root;
         }
-
+        /// <summary>
+        /// Calculates the balance of the current node
+        /// </summary>
+        /// <param name="ln">The left hand child node</param>
+        /// <param name="rn">The right hand child node</param>
+        /// <returns>The balance of the current node</returns>
         private int balance(Node ln, Node rn)
         {
             return nodeHeight(ln) - nodeHeight(rn);
         }
 
-        /*
-        IF tree is right heavy (balance < -1)
-            IF tree's right subtree is left heavy
-                Double Left Rotation or Left Right 
-            ELSE
-                Single Left Rotation
-        ELSE IF tree is left heavy (balance > 1)
-            IF tree's left subtree is right heavy
-                Double Right Rotation or Right Left
-            ELSE 
-                Single Right Rotation
-        */
-
+        /// <summary>
+        /// Insert new value in the tree.
+        /// </summary>
+        /// <param name="value">The integer value to be inserted into the tree</param>
         public new void insertValue(int value)
         {
             root = insertNode(value, root);
         }
 
+        /// <summary>
+        /// Inserts a node into the tree.
+        /// Function is called recursively until the appropriate insert location is found.
+        /// Also re-balances the tree.
+        /// </summary>
+        /// <param name="value">An integer value. Can not be a duplicate of a number already inserted.</param>
+        /// <param name="cNode">The current node to compare the insert value to.</param>
+        /// <returns>A node containing the insert value.</returns>
         private new Node insertNode(int value, Node cNode)
         {
 
@@ -49,16 +53,14 @@ namespace Trees
                 };
                 return cNode;
             }
-            if (value > cNode.data)
+            else if (value > cNode.data)
             {
                 cNode.right = insertNode(value, cNode.right);
             }
-            if (value < cNode.data)
+            else if (value < cNode.data)
             {
                 cNode.left = insertNode(value, cNode.left);
             }
-
-            // Console.WriteLine("Value: {0}, Before Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
 
             var bf = balance(cNode.left, cNode.right);
 
@@ -86,26 +88,37 @@ namespace Trees
                     cNode = leftRotation(cNode);
                 }
             }
-            // Console.WriteLine("Value: {0}, After Bal: {1}", cNode.data, balance(cNode.left, cNode.right));
             return cNode;
         }
 
+        /// <summary>
+        /// Delete a value in the tree.
+        /// </summary>
+        /// <param name="value">The integer value to be deleted.</param>
         public new void deleteValue(int value)
         {
             root = deleteNode(value, root);
         }
 
+        /// <summary>
+        /// Deletes the provided value.
+        /// Function is called recursively until the appropriate insert location is found.
+        /// Also re-balances the tree.
+        /// </summary>
+        /// <param name="value">The value to be deleted</param>
+        /// <param name="cNode">The current root node in the subtree.</param>
+        /// <returns>The root node of the subtree.</returns>
         protected new Node deleteNode(int value, Node pNode)
         {
             if (pNode == null)
             {
                 return pNode;
             }
-            if (pNode.data < value)
+            else if (pNode.data < value)
             {
                 pNode.right = deleteNode(value, pNode.right);
             }
-            if (pNode.data > value)
+            else if (pNode.data > value)
             {
                 pNode.left = deleteNode(value, pNode.left);
             }
@@ -157,6 +170,11 @@ namespace Trees
             // Console.WriteLine("Value: {0}, After Bal: {1}", pNode.data, balance(pNode.left, pNode.right));
             return pNode;
         }
+
+        /// <summary>
+        /// A test to confirm the tree is infact an AVL Tree.
+        /// </summary>
+        /// <returns>A boolean, true if the tree is an AVL Tree, false if the tree is not an AVL Tree</returns>
         public bool isAVL()
         {
             if (this.isBST() && this.isAVLUtil(root))
@@ -169,6 +187,13 @@ namespace Trees
             }
         }
 
+        /// <summary>
+        /// Tests that the subtrees below do not contain values higher or lower than their parent.
+        /// </summary>
+        /// <param name="n">The current node</param>
+        /// <param name="min">The current min value of the parent tree</param>
+        /// <param name="max">The current max value of the parent tree</param>
+        /// <returns>A boolean, true if the tree is an AVL Tree, false if the tree is not an AVL Tree</returns>
         private bool isAVLUtil(Node n)
         {
             if (n == null)

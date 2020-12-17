@@ -13,7 +13,7 @@ namespace Trees
 
             var random = new Random();
             var numSet = new HashSet<int>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1000000; i++)
             {
                 numSet.Add(random.Next(10, int.MaxValue));
             }
@@ -31,7 +31,6 @@ namespace Trees
             Console.WriteLine("Set Size {0}", numSet.Count);
             Console.WriteLine("Found Value: {0}", findValue);
             Console.WriteLine("BST Elapsed Ticks: {0}", watch.ElapsedTicks);
-            myTree.printTree();
             AVL myAVLTree = new AVL();
 
             foreach (int item in numSet)
@@ -47,8 +46,6 @@ namespace Trees
             Console.WriteLine("Set Size {0}", numSet.Count);
             Console.WriteLine("AVL Found Value: {0}", findAVLValue);
             Console.WriteLine("AVL Elapsed Ticks: {0}", watch.ElapsedTicks);
-
-
         }
 
     }

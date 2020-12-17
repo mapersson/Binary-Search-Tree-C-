@@ -41,11 +41,11 @@ namespace Trees
                 };
                 return cNode;
             }
-            if (value > cNode.data)
+            else if (value > cNode.data)
             {
                 cNode.right = insertNode(value, cNode.right);
             }
-            if (value < cNode.data)
+            else if (value < cNode.data)
             {
                 cNode.left = insertNode(value, cNode.left);
             }
@@ -73,11 +73,11 @@ namespace Trees
             {
                 return cNode;
             }
-            if (cNode.data < value)
+            else if (cNode.data < value)
             {
                 cNode.right = deleteNode(value, cNode.right);
             }
-            if (cNode.data > value)
+            else if (cNode.data > value)
             {
                 cNode.left = deleteNode(value, cNode.left);
             }
@@ -98,7 +98,10 @@ namespace Trees
                 {
                     return cNode.right;
                 }
-                return null;
+                else
+                {
+                    return null;
+                }
             }
             return cNode;
         }
@@ -143,12 +146,8 @@ namespace Trees
         /// <returns>The node containing provided value. If the value is not found, returns null.</returns>
         protected Node searchUtil(int value, Node n)
         {
-            // TODO: Clean up the null check in this method. 
-            if (n == null)
-            {
-                return null;
-            }
-            else if (value == n.data)
+
+            if (n == null || value == n.data)
             {
                 return n;
             }
@@ -156,13 +155,9 @@ namespace Trees
             {
                 return searchUtil(value, n.right);
             }
-            else if (value < n.data)
-            {
-                return searchUtil(value, n.left);
-            }
             else
             {
-                return null;
+                return searchUtil(value, n.left);
             }
         }
 
@@ -192,13 +187,13 @@ namespace Trees
             return nodeHeight(root);
         }
         /// <summary>
-        /// Prints the height and value of the nodes in the tree in preoder transersal order.
+        /// Prints the value of the nodes in the tree in preoder transersal order.
         /// </summary>
         /// <param name="n">The node who's value is to be printed</param>
         private void print(Node n)
         {
             // TODO: Refactor to a single null check. 
-            Console.Write(" Value:{0}, Height:{1} ", n.data, n.height);
+            Console.Write(" Value:{0}", n.data);
             if (n.left != null)
             {
                 print(n.left);
@@ -211,7 +206,7 @@ namespace Trees
         }
 
         /// <summary>
-        /// Calculates the height of the provided node
+        /// Calculates the height of the provided node. The bottom node has a height of 1, not 0.
         /// </summary>
         /// <param name="n">The node who's height is of interest</param>
         /// <returns>An integer value representing the height of the node</returns>

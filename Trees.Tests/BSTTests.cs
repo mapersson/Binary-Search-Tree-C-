@@ -190,5 +190,21 @@ namespace Trees.Tests
             Assert.IsTrue(myTree.isBST());
             Assert.AreEqual(-1, myTree.search(4));
         }
+
+        [Ignore]
+        public void Print_ReturnsString()
+        {
+            // Arrange
+            BST tree = new BST(new Node(1));
+            tree.insertValue(2);
+            tree.insertValue(3);
+            tree.insertValue(4);
+            tree.insertValue(5);
+
+            // Action
+
+
+            // Assert
+        }
     }
 }
