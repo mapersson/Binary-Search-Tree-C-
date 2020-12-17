@@ -39,7 +39,7 @@ namespace Trees
 
         public Node()
         {
-
+            this.height = 1;
         }
         /// <summary>
         /// Create a node with a given integer value.
