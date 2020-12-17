@@ -1,5 +1,5 @@
 using System;
-
+using System.Text;
 namespace Trees
 {
     public class BST
@@ -166,16 +166,15 @@ namespace Trees
         /// Prints the tree to the consule in preorder transversal order.
         /// If the tree is empty prints the tree is empty. 
         /// </summary>
-        public void printTree()
+        public string printTree()
         {
             if (root == null)
             {
-                Console.WriteLine("Empty Tree");
+                return "Empty Tree";
             }
             else
             {
-                Node cnode = root;
-                print(cnode);
+                return preorder(root, "");
             }
         }
 
@@ -188,26 +187,17 @@ namespace Trees
             root.updateHeight();
             return root.height;
         }
-        /// <summary>
-        /// Prints the value of the nodes in the tree in preoder transersal order.
-        /// </summary>
-        /// <param name="n">The node who's value is to be printed</param>
-        private void print(Node n)
+
+        private String preorder(Node n, String output)
         {
-            // TODO: Refactor to a single null check. 
-            Console.Write(" Value:{0}", n.data);
-            if (n.Left != null)
+            if (n != null)
             {
-                print(n.Left);
+                output = output + " " + n.data.ToString() + preorder(n.Left, output) + preorder(n.Right, output);
+                return output;
             }
-            if (n.Right != null)
-            {
-                print(n.Right);
-            }
-            return;
+
+            return output;
         }
-
-
 
         /// <summary>
         /// A test to confirm the tree is infact a Binary Search Tree.
